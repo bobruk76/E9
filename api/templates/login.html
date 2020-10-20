@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Сообщение
+{% endblock %}
+
+{% block content %}
+	<h2 class="title">Новый пользователь</h2>
+	<form method="POST" action="/add-site">
+			{{ form.csrf_token }}
+		<div class="form-field">
+			{{ form.as_p }}
+		</div>
+		<input type="submit" value="Зарегистрировать">
+	</form>
+{% endblock %}

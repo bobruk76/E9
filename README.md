@@ -1,4 +1,4 @@
-# E8
+# E9
 
 Необходимо установить docker и docker-compose.
 Собрать образы командой
@@ -20,9 +20,9 @@
 export FLASK_APP=api/app
 export FLASK_ENV=development
 
+alembic init alembic
 alembic revision --autogenerate -m "initial migration"
 alembic upgrade head
 
- celery -A _celery worker --loglevel=INFO
 
 ```
