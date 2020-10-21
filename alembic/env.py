@@ -1,4 +1,5 @@
 import os
+import sys
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -8,6 +9,9 @@ from alembic import context
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
+sys.path = ['', '..'] + sys.path[1:]
+from api.models import Base
+
 config = context.config
 
 # Interpret the config file for Python logging.
@@ -18,14 +22,17 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = [Base.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 section = config.config_ini_section
-config.set_section_option(section, "SQLALCHEMY_DATABASE_URI", str(os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/e8")))
+config.set_section_option(section, ""
+                                   "SQLALCHEMY_DATABASE_URI",
+                          str(os.environ.get("DATABASE_URL",
+                                             "postgresql://e9user:e9user@localhost:5432/e9")))
 
 
 def run_migrations_offline():
