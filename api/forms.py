@@ -1,9 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField
+from wtforms import StringField, TextAreaField, DateTimeField
 
 
-class UrlForm(FlaskForm):
-    url = TextAreaField(u'Адрес сайта')
+class EventForm(FlaskForm):
+    title = StringField(u'Заголовок события')
+    description = TextAreaField(u'Описание события')
+
+    timestamp_begin = DateTimeField(u'Время начала события')
+    timestamp_end = DateTimeField(u'Время конца события')
 
 
 class CreateUserForm(FlaskForm):

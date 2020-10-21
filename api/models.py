@@ -27,18 +27,16 @@ class User(Base):
         return self.authenticated
 
 
-class Task(Base):
-    __tablename__ = 'task'
+class Event(Base):
+    __tablename__ = 'event'
     _id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user._id'), nullable=False)
     timestamp_begin = Column(DateTime(), default=datetime.utcnow)
     timestamp_end = Column(DateTime(), nullable=True)
 
-    address = Column(String(300), unique=False, nullable=True)
+    title = Column(String(300), unique=False, nullable=True)
+    description = Column(String(300), unique=False, nullable=True)
 
-    task_stat = Column(Integer, default=1)
-    # task_status = Column(Enum(TaskStatus), default=TaskStatus.NOT_STARTED)
-    http_status = Column(Integer)
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

@@ -8,9 +8,7 @@
 	<h2 class="title">Новый пользователь</h2>
 	<form method="POST" action="/add-site">
 			{{ form.csrf_token }}
-		<div class="form-field">
-			{{ form.as_p }}
-		</div>
+			{{ form.as_p() }}
 		<input type="submit" value="Зарегистрировать">
 	</form>
 {% endblock %}

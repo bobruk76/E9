@@ -1,22 +1,23 @@
-from _celery.tasks import count_words
-
-from api import db
-from api.models import Task, Result
+from api import db, bcrypt
 from sqlalchemy.orm import sessionmaker
 
-def new_url(url):
-    new_task = Task(address=url)
+from api.models import Event, User
+
+
+def new_event(url):
+    new_task = Event(address=url)
     db.session.add(new_task)
-    new_result = Result(address=url)
-    db.session.add(new_result)
     db.session.commit()
-    count_words.delay(new_task.as_dict(), new_result.as_dict())
 
-def get_all_results():
-    return db.session.query(Result).all()
 
-def get_all_tasks():
-    return db.session.query(Task).all()
+def get_all_events():
+    return db.session.query(Event).all()
+
+
+def new_user(name, email, password):
+    user = User(name=name, email=email, password=bcrypt.generate_password_hash(password).decode('utf-8'))
+    db.session.add(user)
+    db.session.commit()
 
 
 
