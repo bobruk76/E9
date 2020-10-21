@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, DateTimeField
+from wtforms import StringField, TextAreaField, DateTimeField, PasswordField, validators
 
 
 class EventForm(FlaskForm):
@@ -11,9 +11,13 @@ class EventForm(FlaskForm):
 
 
 class CreateUserForm(FlaskForm):
-    name = TextAreaField(u'Имя пользователя')
-    email = TextAreaField(u'Почтовый ящик')
-    password = TextAreaField(u'Пароль')
+    name = StringField(u'Имя пользователя', [validators.Length(min=6, max=35)])
+    email = StringField(u'Почтовый ящик', [validators.Length(min=6, max=35)])
+    password = PasswordField('New Password', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Пароли должны совпадать')
+    ])
+    confirm = PasswordField(u'Повторите пароль')
 
 
 class LoginForm(FlaskForm):

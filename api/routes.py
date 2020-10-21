@@ -6,7 +6,7 @@ from flask import Flask, request, render_template
 from api.forms import CreateUserForm, LoginForm, EventForm
 from api.models import User
 
-from api.service import get_all_events, new_user
+from api.service import get_all_events, new_user, new_event
 
 
 @app.route('/')
@@ -26,7 +26,7 @@ def add_site():
     event_form = EventForm()
     if request.method == 'POST':
         url = request.form.get('url')
-        new_url(url)
+        new_event(url)
 
         return redirect('/')
 
