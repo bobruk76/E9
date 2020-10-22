@@ -6,7 +6,7 @@ from flask import Flask, request, render_template
 from api.forms import CreateUserForm, LoginForm, EventForm
 from api.models import User
 
-from api.service import get_all_events, new_user, new_event, get_all_users
+from api.service import get_all_events, new_user, new_event, get_all_users, get_user, get_user_by_id
 
 
 @app.route('/')
@@ -35,14 +35,14 @@ def add_event():
 
 @login_manager.user_loader
 def user_loader(user_id):
-    return User.query.get(user_id)
+    return get_user_by_id(user_id)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.get(form.name.data)
+        user = get_user(form.name.data)
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 user.authenticated = True

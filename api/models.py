@@ -15,11 +15,15 @@ class User(Base):
     name = Column(String(300), nullable=False)
     password = Column(String, nullable=False)
     authenticated = Column(Boolean, default=False)
+    active = Column(Boolean, default=False)
 
     def get_id(self):
         return self._id
 
     def is_authenticated(self):
+        return self.authenticated
+
+    def is_active(self):
         return self.authenticated
 
     def as_dict(self):

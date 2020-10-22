@@ -14,6 +14,14 @@ def get_all_events():
     return db.session.query(Event).all()
 
 
+def get_user(name):
+    return db.session.query(User).filter(User.name == name).one()
+
+
+def get_user_by_id(id):
+    return db.session.query(User).filter(User._id == id).one()
+
+
 def get_all_users():
     return db.session.query(User).all()
 
