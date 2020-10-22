@@ -6,18 +6,22 @@
 
 {% block content %}
 	<h2 class="title">Новый пользователь</h2>
-	<form method="POST" action="/add-site">
+	<form method="POST" action="/create-user">
 		{{ form.csrf_token }}
 		<div class="form-group">
-			{{form.name(class_='form-control')}}
+			{{ form.name.label }}
+			{{ form.name(class_='form-control') }}
 		</div>
 		<div class="form-group">
-			{{form.email(class_='form-control')}}
+			{{ form.email.label }}
+			{{form.email(class_='form-control',aria_describedby='emailHelp',  placeholder='Enter email')}}
 		</div>
 		<div class="form-group">
+			{{ form.password.label }}
 			{{form.password(class_='form-control')}}
 		</div>
 		<div class="form-group">
+			{{ form.confirm.label }}
 			{{form.confirm(class_='form-control')}}
 		</div>
 		<input type="submit" value="Зарегистрировать">

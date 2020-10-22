@@ -14,6 +14,10 @@ def get_all_events():
     return db.session.query(Event).all()
 
 
+def get_all_users():
+    return db.session.query(User).all()
+
+
 def new_user(name, email, password):
     user = User(name=name, email=email, password=bcrypt.generate_password_hash(password).decode('utf-8'))
     db.session.add(user)

@@ -6,7 +6,7 @@ from flask import Flask, request, render_template
 from api.forms import CreateUserForm, LoginForm, EventForm
 from api.models import User
 
-from api.service import get_all_events, new_user, new_event
+from api.service import get_all_events, new_user, new_event, get_all_users
 
 
 @app.route('/')
@@ -18,7 +18,7 @@ def index():
 @app.route('/event/')
 def list_events():
     events = get_all_events()
-    return render_template('list_events.html', evenvts=events)
+    return render_template('list.html', evenvts=events)
 
 
 @app.route('/event/new', methods=['GET', 'POST'])
@@ -38,16 +38,6 @@ def user_loader(user_id):
     return User.query.get(user_id)
 
 
-@app.route("/create_user", methods=["GET", "POST"])
-def create_user():
-    form = CreateUserForm()
-    if form.validate_on_submit():
-        name = request.form.get('name')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        new_user(name, email, password)
-        return redirect("/")
-    return render_template("login.html", form=form)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -63,3 +53,22 @@ def login():
                 login_user(user, remember=True)
                 return redirect("/")
     return render_template("login.html", form=form)
+
+
+@app.route('/user/')
+def list_users():
+    users = get_all_users()
+    return render_template('list.html', data=users, title=u"Список пользователей")
+
+
+@app.route("/user/new", methods=["GET", "POST"])
+@app.route("/new-user", methods=["GET", "POST"])
+def create_user():
+    form = CreateUserForm()
+    if form.validate_on_submit():
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        new_user(name, email, password)
+        return redirect("/user/")
+    return render_template("create_user.html", form=form)

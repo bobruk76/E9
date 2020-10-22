@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <body>
+    <div class="container">
+        <h1>
+             {{ title }}
+        </h1>
+        <div class="list-group col-10 mx-auto">
+            {% for item in data|sort(attribute="_id", reverse=True) %}
+                <a class="list-group-item list-group-item-action" href="{{ item._id }}">
+                    {% for field in item.__dict__ %}
+                        {% if field!='_sa_instance_state' and field!='password' %}
+                            {{ item[field] }}
+                        {% endif %}
+                    {% endfor %}
+<!--                    <ul>-->
+<!--                        <li class="list-group-item list-group-item-secondary">статус страници:{{ item.http_status }}</li>-->
+<!--                    </ul>-->
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    </body>
+{% endblock %}
