@@ -38,8 +38,6 @@ def user_loader(user_id):
     return User.query.get(user_id)
 
 
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -52,7 +50,7 @@ def login():
                 db.session.commit()
                 login_user(user, remember=True)
                 return redirect("/")
-    return render_template("login.html", form=form)
+    return render_template("logon.html", form=form)
 
 
 @app.route('/user/')
@@ -62,7 +60,6 @@ def list_users():
 
 
 @app.route("/user/new", methods=["GET", "POST"])
-@app.route("/new-user", methods=["GET", "POST"])
 def create_user():
     form = CreateUserForm()
     if form.validate_on_submit():

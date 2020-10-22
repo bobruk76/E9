@@ -13,7 +13,7 @@ class EventForm(FlaskForm):
 class CreateUserForm(FlaskForm):
     name = StringField(u'Имя пользователя', [validators.Length(min=6, max=35)])
     email = StringField(u'Почтовый ящик', [validators.Length(min=6, max=35)])
-    password = PasswordField('New Password', [
+    password = PasswordField(u'Новый пароль', [
         validators.DataRequired(),
         validators.EqualTo('confirm', message='Пароли должны совпадать')
     ])
@@ -21,5 +21,5 @@ class CreateUserForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = TextAreaField(u'Почтовый ящик')
-    password = TextAreaField(u'Пароль')
+    email = StringField(u'Почтовый ящик')
+    password = PasswordField(u'Пароль')
