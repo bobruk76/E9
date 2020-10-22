@@ -20,11 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f926b79a-adb1-42fc-a336-ac25013a9dff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/templates/base_login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/templates/login_user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/E9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/E9.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/static/css/logon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/static/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/base_login.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/templates/create_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/create_user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/templates/logon.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/logon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/logon.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +52,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -80,11 +87,11 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="677" y="209" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603284700487">
-      <screen x="54" y="27" width="1866" height="1053" />
+    <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603392751040">
+      <screen x="58" y="27" width="1308" height="741" />
     </state>
     <state x="677" y="209" width="424" height="491" key="FileChooserDialogImpl/54.27.1866.1053@54.27.1866.1053" timestamp="1603284700487" />
-    <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl/58.27.1308.741@58.27.1308.741" timestamp="1603165257576" />
+    <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl/58.27.1308.741@58.27.1308.741" timestamp="1603392751040" />
     <state x="326" y="89" width="762" height="623" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603164922437">
       <screen x="58" y="27" width="1308" height="741" />
     </state>

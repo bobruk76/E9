@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, DateTimeField, PasswordField, validators
+from wtforms import StringField, TextAreaField, DateTimeField, PasswordField, validators, Form
 
 
 class EventForm(FlaskForm):
@@ -21,5 +21,5 @@ class CreateUserForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField(u'Почтовый ящик')
+    name = StringField(u'Имя пользователя')
     password = PasswordField(u'Пароль')

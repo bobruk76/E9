@@ -19,9 +19,6 @@ class User(Base):
     def get_id(self):
         return self._id
 
-    def get_email(self):
-        return self.email
-
     def is_authenticated(self):
         return self.authenticated
 

@@ -22,7 +22,7 @@ def list_events():
 
 
 @app.route('/event/new', methods=['GET', 'POST'])
-def add_site():
+def add_event():
     event_form = EventForm()
     if request.method == 'POST':
         url = request.form.get('url')
@@ -42,7 +42,7 @@ def user_loader(user_id):
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.get(form.email.data)
+        user = User.query.get(form.name.data)
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 user.authenticated = True
@@ -50,7 +50,7 @@ def login():
                 db.session.commit()
                 login_user(user, remember=True)
                 return redirect("/")
-    return render_template("logon.html", form=form)
+    return render_template("login_user.html", form=form)
 
 
 @app.route('/user/')

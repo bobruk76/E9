@@ -1,4 +1,4 @@
-{% extends "base_login.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 Сообщение
@@ -13,17 +13,9 @@
 			{{ form.name(class_='form-control') }}
 		</div>
 		<div class="form-group">
-			{{ form.email.label }}
-			{{form.email(class_='form-control',aria_describedby='emailHelp',  placeholder='Enter email')}}
-		</div>
-		<div class="form-group">
 			{{ form.password.label }}
 			{{form.password(class_='form-control')}}
 		</div>
-		<div class="form-group">
-			{{ form.confirm.label }}
-			{{form.confirm(class_='form-control')}}
-		</div>
-		<input type="submit" value="Зарегистрировать">
+		<button type="submit" class="btn btn-success">Авторизоваться</button>
 	</form>
 {% endblock %}
