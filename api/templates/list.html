@@ -11,17 +11,8 @@
         <h1>
              {{ title }}
         </h1>
-<!--        <div class="list-group col-10 mx-auto">-->
-
+        <a href={{ request.url + 'new' }}>Create new</a>
                     <table class="table table-striped table-hover">
-<!--                      <thead>-->
-<!--                        <tr>-->
-<!--                          <th scope="col">#</th>-->
-<!--                          <th scope="col">First</th>-->
-<!--                          <th scope="col">Last</th>-->
-<!--                          <th scope="col">Handle</th>-->
-<!--                        </tr>-->
-<!--                      </thead>-->
                       <tbody>
                         {% for item in data|sort(attribute="_id", reverse=True) %}
                             <tr>
@@ -34,16 +25,9 @@
                                     {% endif %}
                                  {% endfor %}
                             </tr>
+                         {% endfor %}
                       </tbody>
                     </table>
-
-
-            <!--                    <ul>-->
-            <!--                        <li class="list-group-item list-group-item-secondary">статус страници:{{ item.http_status }}</li>-->
-            <!--                    </ul>-->
-            <!--                </a>-->
-                        {% endfor %}
-<!--        </div>-->
     </div>
     </body>
 {% endblock %}
