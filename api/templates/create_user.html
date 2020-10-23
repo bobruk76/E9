@@ -1,4 +1,4 @@
-{% extends "base_login.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 Сообщение
@@ -24,6 +24,7 @@
 			{{ form.confirm.label }}
 			{{form.confirm(class_='form-control')}}
 		</div>
-		<input type="submit" class="btn btn-success" value="Зарегистрировать">
+		<button type="submit" class="btn btn-success">Зарегистрировать</button>
+
 	</form>
 {% endblock %}

@@ -62,7 +62,7 @@ def list_users():
 @app.route("/user/new", methods=["GET", "POST"])
 def create_user():
     form = CreateUserForm()
-    if form.validate_on_submit():
+    if form.is_submitted():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')

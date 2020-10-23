@@ -14,10 +14,17 @@
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;" ii="footer">
                 <div class="list-group list-group-horizontal mx-auto">
                     <a href="/" class="list-group-item list-group-item-action">На главную</a>
-                    <a href="/tasks/" class="list-group-item list-group-item-action">Список задач</a>
-                    <a href="/user/" class="list-group-item list-group-item-action">Пользователи</a>
+                    {% if current_user.is_authenticated %}
+                        <a href="/event/" class="list-group-item list-group-item-action">События</a>
+                        <a href="/user/" class="list-group-item list-group-item-action">Пользователи</a>
+                      {{ current_user.name }}
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                        <a href="/login" class="list-group-item list-group-item-action">Log in</a>
+                    {% endif %}
                 </div>
             </nav>
+
             {% block content %}
             {% endblock %}
         </div>

@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f926b79a-adb1-42fc-a336-ac25013a9dff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/alembic/versions/9810bab8a3a7_initial_migration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/templates/create_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/create_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/templates/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
