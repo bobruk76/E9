@@ -1,4 +1,4 @@
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.utils import redirect
 
 from api import app, login_manager, bcrypt, db
@@ -30,8 +30,13 @@ def add_event():
 
         timestamp_begin = request.form.get('timestamp_begin')
         timestamp_end = request.form.get('timestamp_end')
+        user_id = current_user.get_id()
 
-        new_event(url)
+        new_event(user_id=user_id,
+                      title=title,
+                      description=description,
+                      timestamp_begin=timestamp_begin,
+                      timestamp_end=timestamp_end)
 
         return redirect('/')
 

@@ -4,9 +4,13 @@ from sqlalchemy.orm import sessionmaker
 from api.models import Event, User
 
 
-def new_event(user, title, description, timestamp_begin, timestamp_end):
-    new_task = Event(address=url)
-    db.session.add(new_task)
+def new_event(user_id, title, description, timestamp_begin, timestamp_end):
+    new_event = Event(user_id=user_id,
+                      title=title,
+                      description=description,
+                      timestamp_begin=timestamp_begin,
+                      timestamp_end=timestamp_end)
+    db.session.add(new_event)
     db.session.commit()
 
 
