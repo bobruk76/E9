@@ -10,7 +10,7 @@ metadata = Base.metadata
 class User(Base):
     __tablename__ = 'user'
 
-    _id = Column(Integer, primary_key=True)
+    _id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(300), nullable=False)
     name = Column(String(300), nullable=False)
     password = Column(String, nullable=False)
@@ -32,7 +32,7 @@ class User(Base):
 
 class Event(Base):
     __tablename__ = 'event'
-    _id = Column(Integer, primary_key=True)
+    _id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('user._id'), nullable=False)
     timestamp_begin = Column(DateTime(), default=datetime.utcnow)
     timestamp_end = Column(DateTime(), nullable=True)

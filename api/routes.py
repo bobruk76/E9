@@ -1,8 +1,8 @@
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 from werkzeug.utils import redirect
 
 from api import app, login_manager, bcrypt, db
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, flash, session
 from api.forms import CreateUserForm, LoginForm, EventForm
 from api.models import User
 
@@ -25,7 +25,12 @@ def list_events():
 def add_event():
     event_form = EventForm()
     if request.method == 'POST':
-        url = request.form.get('url')
+        title = request.form.get('title')
+        description = request.form.get('description')
+
+        timestamp_begin = request.form.get('timestamp_begin')
+        timestamp_end = request.form.get('timestamp_end')
+
         new_event(url)
 
         return redirect('/')
@@ -53,6 +58,17 @@ def login():
     return render_template("login_user.html", form=form)
 
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    if session.get('was_once_logged_in'):
+        # prevent flashing automatically logged out message
+        del session['was_once_logged_in']
+    flash('You have successfully logged yourself out.')
+    return redirect('/login')
+
+
 @app.route('/user/')
 def list_users():
     users = get_all_users()
@@ -66,6 +82,11 @@ def create_user():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        new_user(name, email, password)
-        return redirect("/user/")
+        if not get_user(name):
+            user = new_user(name, email, password)
+            login_user(user, remember=True)
+            return redirect("/event/")
+        else:
+            flash('Такой пользователь уже существует!')
+
     return render_template("create_user.html", form=form)
