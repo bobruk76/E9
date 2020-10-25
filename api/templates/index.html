@@ -9,22 +9,13 @@
     <body>
     <div class="container">
         <h1>
-            Доска сайтов
+            Доска обытий
         </h1>
-        <p>
-            <a href="/add-site">Добавить сайт</a>
-        </p>
-        <div class="list-group col-10 mx-auto">
-            {% for item in results|sort(attribute="_id", reverse=True) %}
-                <a class="list-group-item list-group-item-action" href="{{ item.address }}">
-                    {{ item.address }}
-                    <ul>
-                        <li class="list-group-item list-group-item-secondary">найдено:{{ item.words_count }}</li>
-                        <li class="list-group-item list-group-item-secondary">статус страници:{{ item.http_status_code }}</li>
-                    </ul>
-                </a>
-            {% endfor %}
-        </div>
+        {% if not current_user.is_authenticated %}
+            <p>Необходимо авторизоваться</p>
+        {% else %}
+            <p>Добро пожаловать {{ current_user.name }}</p>
+        {% endif %}
     </div>
     </body>
 {% endblock %}

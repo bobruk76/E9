@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f926b79a-adb1-42fc-a336-ac25013a9dff" name="Default Changelist" comment="">
+    <list default="true" id="f926b79a-adb1-42fc-a336-ac25013a9dff" name="Default Changelist" comment="add navi">
       <change beforePath="$PROJECT_DIR$/.idea/E9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/E9.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -42,11 +42,12 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/templates" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\skillfactory.ru\E9\api\templates" />
       <recent name="$PROJECT_DIR$/api/templates" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -76,8 +77,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="add navi" />
+    <option name="LAST_COMMIT_MESSAGE" value="add navi" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="578" y="329" key="#Notifications" timestamp="1603595598589">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="578" y="329" key="#Notifications/0.0.1680.1010@0.0.1680.1010" timestamp="1603595598589" />
     <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603392751040">
       <screen x="58" y="27" width="1308" height="741" />
     </state>

@@ -18,7 +18,7 @@ def index():
 @app.route('/event/')
 def list_events():
     events = get_all_events()
-    return render_template('list.html', evenvts=events)
+    return render_template('list_events.html', evenvts=events)
 
 
 @app.route('/event/new', methods=['GET', 'POST'])
@@ -40,7 +40,7 @@ def add_event():
 
         return redirect('/')
 
-    return render_template('new_url.html', form=event_form)
+    return render_template('edit_event.html', form=event_form)
 
 
 @login_manager.user_loader
@@ -60,6 +60,8 @@ def login():
                 db.session.commit()
                 login_user(user, remember=True)
                 return redirect("/")
+            else:
+                flash("Неверное имя пользователя или пароль" )
     return render_template("login_user.html", form=form)
 
 
