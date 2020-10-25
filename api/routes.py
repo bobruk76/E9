@@ -44,6 +44,7 @@ def event_actions(event_id):
         return _datetime
 
     if current_user.is_authenticated:
+        _event = None
         if event_id.isnumeric():
             _event = get_event_by_id(int(event_id))
             event_form = EventForm(obj=_event)
@@ -58,14 +59,21 @@ def event_actions(event_id):
             timestamp_begin = date_check(request.form.get('timestamp_begin'))
             timestamp_end = date_check(request.form.get('timestamp_end'))
             user_id = current_user.get_id()
+            if _event:
 
-            _event = \
-                new_event(user_id=user_id,
-                          title=title,
-                          description=description,
-                          timestamp_begin=timestamp_begin,
-                          timestamp_end=timestamp_end)
-            flash(_event.as_dict())
+                _event = \
+                    new_event(user_id=user_id,
+                              title=title,
+                              description=description,
+                              timestamp_begin=timestamp_begin,
+                              timestamp_end=timestamp_end)
+            else:
+                _event = \
+                    new_event(user_id=user_id,
+                              title=title,
+                              description=description,
+                              timestamp_begin=timestamp_begin,
+                              timestamp_end=timestamp_end)
 
             return redirect('/event/')
         return render_template('edit_event.html', form=event_form)

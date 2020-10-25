@@ -16,6 +16,25 @@ def new_event(user_id, title, description, timestamp_begin, timestamp_end):
     return _event
 
 
+def update_event(event_id, user_id, title, description, timestamp_begin, timestamp_end):
+
+    _event = Event(user_id=user_id,
+                   title=title,
+                   description=description,
+                   timestamp_begin=timestamp_begin,
+                   timestamp_end=timestamp_end)
+
+    db.session.filter_by(_id=event_id).update({'user_id': user_id,
+                                               'title': title,
+                                               'description': description,
+                                               'timestamp_begin': timestamp_begin,
+                                               'timestamp_end': timestamp_end
+                                               })
+    db.session.commit()
+    return _event
+
+
+
 def get_all_events():
     records = db.session.query(Event, User).join(User, Event.user_id == User._id).all()
     return records

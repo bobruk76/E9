@@ -16,12 +16,17 @@
               <tbody>
                 {% for item, user in data|sort(attribute="_id", reverse=True) %}
                     <tr>
-                        <th scope="row">{{ item['_id'] }}</th>
+                       <th scope="row">{{ item['_id'] }}</th>
                         <td>
+                            {% if item['user_id']==current_user_id %}
                             <a href="{{ item['_id'] }}">
                                 {{ item['title'] }}
                             </a>
+                            {% else %}
+                                {{ item['title'] }}
+                            {% endif %}
                         </td>
+
                         <td>{{ item['timestamp_begin'] }}</td>
                         <td>{{ item['timestamp_end'] }}</td>
                         <td>{{ user['name'] }}</td>

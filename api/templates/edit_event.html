@@ -23,17 +23,17 @@
 				{{ form.timestamp_begin.label }}
 				<input type="datetime-local"
 					   id="timestamp_begin" name="timestamp_begin"
-					   value="{{ form.timestamp_begin.data }}">
+					   value="{{ form.timestamp_begin.data | datetimefilter }}">
 			</div>
 
 			<div class="form-group">
 				{{ form.timestamp_begin.label }}
 				<input type="datetime-local"
 					   id="timestamp_end" name="timestamp_end"
-					   value="{{ form.timestamp_begin.data }}">
+					   value="{{ form.timestamp_end.data | datetimefilter }}">
 			</div>
 
 		</dl>
-		<button type="submit" class="btn btn-success">Опубликовать</button>
+		<button type="submit" class="btn btn-success">Сохранить</button>
 	</form>
 {% endblock %}
