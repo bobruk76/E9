@@ -7,8 +7,33 @@
 {% block content %}
 	<h2 class="title">Новое сообщение</h2>
 	<form method="POST">
+		<dl>
 		{{ form.csrf_token }}
-		{{ form.as_p()|safe }}
-		<input type="submit" value="Опубликовать">
+
+			<div class="form-group">
+				{{ form.title.label }}
+				{{ form.title(class_='form-control') }}
+			</div>
+
+			<div class="form-group">
+				{{ form.description.label }}
+				{{ form.description(class_='form-control') }}
+			</div>
+			<div class="form-group">
+				{{ form.timestamp_begin.label }}
+				<input type="datetime-local"
+					   id="timestamp_begin" name="timestamp_begin"
+					   value="{{ form.timestamp_begin.data }}">
+			</div>
+
+			<div class="form-group">
+				{{ form.timestamp_begin.label }}
+				<input type="datetime-local"
+					   id="timestamp_end" name="timestamp_end"
+					   value="{{ form.timestamp_begin.data }}">
+			</div>
+
+		</dl>
+		<button type="submit" class="btn btn-success">Опубликовать</button>
 	</form>
 {% endblock %}

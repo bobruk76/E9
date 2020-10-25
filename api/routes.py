@@ -15,32 +15,48 @@ def index():
     return render_template('index.html', results=results)
 
 
+@app.route('/event/<event_id>/del')
+def del_event(event_id):
+    if current_user.is_authenticated:
+        user_id = current_user.get_id()
+        del_event(event_id, user_id)
+        return redirect('/event/')
+    return redirect('/')
+
+
 @app.route('/event/')
 def list_events():
-    events = get_all_events()
-    return render_template('list_events.html', evenvts=events)
+    if current_user.is_authenticated:
+        events = get_all_events()
+        return render_template('list_events.html', data=events)
+    return redirect('/')
 
 
 @app.route('/event/new', methods=['GET', 'POST'])
 def add_event():
-    event_form = EventForm()
-    if request.method == 'POST':
-        title = request.form.get('title')
-        description = request.form.get('description')
+    if current_user.is_authenticated:
+        event_form = EventForm()
+        if request.method == 'POST':
 
-        timestamp_begin = request.form.get('timestamp_begin')
-        timestamp_end = request.form.get('timestamp_end')
-        user_id = current_user.get_id()
+            title = request.form.get('title')
+            description = request.form.get('description')
 
-        new_event(user_id=user_id,
-                      title=title,
-                      description=description,
-                      timestamp_begin=timestamp_begin,
-                      timestamp_end=timestamp_end)
+            timestamp_begin = request.form.get('timestamp_begin')
+            timestamp_end = request.form.get('timestamp_end')
+            user_id = current_user.get_id()
 
-        return redirect('/')
+            _event = \
+                new_event(user_id=user_id,
+                          title=title,
+                          description=description,
+                          timestamp_begin=timestamp_begin,
+                          timestamp_end=timestamp_end)
+            flash(_event.as_dict())
 
-    return render_template('edit_event.html', form=event_form)
+            return redirect('/event/')
+        return render_template('edit_event.html', form=event_form)
+    flash("Только зарегистрированный пользователь может добавлять событие")
+    return redirect('/')
 
 
 @login_manager.user_loader
@@ -61,7 +77,7 @@ def login():
                 login_user(user, remember=True)
                 return redirect("/")
             else:
-                flash("Неверное имя пользователя или пароль" )
+                flash("Неверное имя пользователя или пароль")
     return render_template("login_user.html", form=form)
 
 
@@ -70,9 +86,8 @@ def login():
 def logout():
     logout_user()
     if session.get('was_once_logged_in'):
-        # prevent flashing automatically logged out message
         del session['was_once_logged_in']
-    flash('You have successfully logged yourself out.')
+    flash('Вы должны авторизоваться')
     return redirect('/login')
 
 

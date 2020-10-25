@@ -32,6 +32,7 @@ class User(Base):
 
 class Event(Base):
     __tablename__ = 'event'
+
     _id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('user._id'), nullable=False)
     timestamp_begin = Column(DateTime(), default=datetime.utcnow)
@@ -39,7 +40,6 @@ class Event(Base):
 
     title = Column(String(300), unique=False, nullable=True)
     description = Column(String(300), unique=False, nullable=True)
-
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

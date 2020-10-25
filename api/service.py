@@ -13,10 +13,21 @@ def new_event(user_id, title, description, timestamp_begin, timestamp_end):
 
     db.session.add(_event)
     db.session.commit()
+    return _event
 
 
 def get_all_events():
-    return db.session.query(Event).all()
+    records = db.session.query(Event, User).join(User, Event.user_id == User._id).all()
+    return records
+
+
+def get_event_by_id(id):
+    return db.session.query(Event).filter(Event._id == id).one_or_none()
+
+
+def del_event(event_id, user_id):
+    User.query.filter(Event._id == event_id, Event.user_id == user_id).delete()
+    db.session.commit()
 
 
 def get_user(name):

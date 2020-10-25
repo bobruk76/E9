@@ -12,22 +12,28 @@
              {{ title }}
         </h1>
         <a href={{ request.url + 'new' }}>Create new</a>
-                    <table class="table table-striped table-hover">
-                      <tbody>
-                        {% for item in data|sort(attribute="_id", reverse=True) %}
-                            <tr>
-                                {% for field in item.__dict__ %}
-                                    {% if field=='_id' and field!='password' %}
-                                      <th scope="row">{{ item[field] }}</th>
-                                    {% endif %}
-                                    {% if field!='_sa_instance_state' and field!='password' and field!='_id'%}
-                                      <td>{{ item[field] }}</td>
-                                    {% endif %}
-                                 {% endfor %}
-                            </tr>
-                         {% endfor %}
-                      </tbody>
-                    </table>
+            <table class="table table-striped table-hover">
+              <tbody>
+                {% for item, user in data|sort(attribute="_id", reverse=True) %}
+                    <tr>
+                        <th scope="row">{{ item['_id'] }}</th>
+                        <td>{{ item['title'] }}</td>
+                        <td>{{ item['timestamp_begin'] }}</td>
+                        <td>{{ item['timestamp_end'] }}</td>
+                        <td>{{ user['name'] }}</td>
+                        <td>
+                            {% if item['_id'] == user['_id'] %}
+                            <form method="POST" action="{{ item['_id'] }}/del">
+                                <div class="col-auto my-1">
+                                  <button type="submit" class="btn btn-danger">del</button>
+                                </div>
+                            </form>
+                            {% %}
+                        </td>
+                    </tr>
+                 {% endfor %}
+              </tbody>
+            </table>
     </div>
     </body>
 {% endblock %}
