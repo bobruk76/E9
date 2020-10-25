@@ -1,27 +1,20 @@
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.utils import redirect
+from wtforms.ext.appengine.db import model_form
 
 from api import app, login_manager, bcrypt, db
 from flask import Flask, request, render_template, flash, session
 from api.forms import CreateUserForm, LoginForm, EventForm
-from api.models import User
+from api.models import User, Event
 
-from api.service import get_all_events, new_user, new_event, get_all_users, get_user, get_user_by_id, del_event
+from api.service import get_all_events, new_user, new_event, get_all_users, get_user, get_user_by_id, del_event, \
+    get_event_by_id
 
 
 @app.route('/')
 def index():
     results = get_all_events()
     return render_template('index.html', results=results)
-
-
-@app.route('/event/<event_id>/del', methods=['GET', 'POST', 'PUT', ])
-def event_del(event_id):
-    if current_user.is_authenticated:
-        user_id = current_user.get_id()
-        del_event(event_id, user_id)
-        return redirect('/event/')
-    return redirect('/')
 
 
 @app.route('/event/')
@@ -34,15 +27,29 @@ def list_events():
     return redirect('/')
 
 
-@app.route('/event/new', methods=['GET', 'POST'])
-def event_add():
+@app.route('/event/<event_id>/del', methods=['GET', 'POST', 'PUT', ])
+def event_del(event_id):
+    if current_user.is_authenticated:
+        user_id = current_user.get_id()
+        del_event(event_id, user_id)
+        return redirect('/event/')
+    return redirect('/')
+
+
+@app.route('/event/<event_id>', methods=['GET', 'POST'])
+def event_actions(event_id):
     def date_check(_datetime):
         if _datetime == '':
             return None
         return _datetime
 
     if current_user.is_authenticated:
-        event_form = EventForm()
+        if event_id.isnumeric():
+            _event = get_event_by_id(int(event_id))
+            event_form = EventForm(obj=_event)
+        else:
+            event_form = EventForm()
+
         if request.method == 'POST':
 
             title = request.form.get('title')

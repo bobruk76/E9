@@ -17,7 +17,11 @@
                 {% for item, user in data|sort(attribute="_id", reverse=True) %}
                     <tr>
                         <th scope="row">{{ item['_id'] }}</th>
-                        <td>{{ item['title'] }}</td>
+                        <td>
+                            <a href="{{ item['_id'] }}">
+                                {{ item['title'] }}
+                            </a>
+                        </td>
                         <td>{{ item['timestamp_begin'] }}</td>
                         <td>{{ item['timestamp_end'] }}</td>
                         <td>{{ user['name'] }}</td>
