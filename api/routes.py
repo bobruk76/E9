@@ -6,7 +6,7 @@ from flask import Flask, request, render_template, flash, session
 from api.forms import CreateUserForm, LoginForm, EventForm
 from api.models import User
 
-from api.service import get_all_events, new_user, new_event, get_all_users, get_user, get_user_by_id
+from api.service import get_all_events, new_user, new_event, get_all_users, get_user, get_user_by_id, del_event
 
 
 @app.route('/')
@@ -15,8 +15,8 @@ def index():
     return render_template('index.html', results=results)
 
 
-@app.route('/event/<event_id>/del')
-def del_event(event_id):
+@app.route('/event/<event_id>/del', methods=['GET', 'POST', 'PUT', ])
+def event_del(event_id):
     if current_user.is_authenticated:
         user_id = current_user.get_id()
         del_event(event_id, user_id)
@@ -27,13 +27,20 @@ def del_event(event_id):
 @app.route('/event/')
 def list_events():
     if current_user.is_authenticated:
+        current_user_id = current_user.get_id()
+
         events = get_all_events()
-        return render_template('list_events.html', data=events)
+        return render_template('list_events.html', data=events, current_user_id=current_user_id)
     return redirect('/')
 
 
 @app.route('/event/new', methods=['GET', 'POST'])
-def add_event():
+def event_add():
+    def date_check(_datetime):
+        if _datetime == '':
+            return None
+        return _datetime
+
     if current_user.is_authenticated:
         event_form = EventForm()
         if request.method == 'POST':
@@ -41,8 +48,8 @@ def add_event():
             title = request.form.get('title')
             description = request.form.get('description')
 
-            timestamp_begin = request.form.get('timestamp_begin')
-            timestamp_end = request.form.get('timestamp_end')
+            timestamp_begin = date_check(request.form.get('timestamp_begin'))
+            timestamp_end = date_check(request.form.get('timestamp_end'))
             user_id = current_user.get_id()
 
             _event = \

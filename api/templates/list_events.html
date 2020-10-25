@@ -22,13 +22,13 @@
                         <td>{{ item['timestamp_end'] }}</td>
                         <td>{{ user['name'] }}</td>
                         <td>
-                            {% if item['_id'] == user['_id'] %}
-                            <form method="POST" action="{{ item['_id'] }}/del">
+                            {% if item['user_id']==current_user_id %}
+                            <form method="PUT" action="{{ item['_id'] }}/del">
                                 <div class="col-auto my-1">
                                   <button type="submit" class="btn btn-danger">del</button>
                                 </div>
                             </form>
-                            {% %}
+                            {% endif %}
                         </td>
                     </tr>
                  {% endfor %}

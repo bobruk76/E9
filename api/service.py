@@ -26,7 +26,7 @@ def get_event_by_id(id):
 
 
 def del_event(event_id, user_id):
-    User.query.filter(Event._id == event_id, Event.user_id == user_id).delete()
+    db.session.query(Event).filter(Event._id == event_id, Event.user_id == user_id).delete()
     db.session.commit()
 
 
