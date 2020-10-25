@@ -1,6 +1,6 @@
 {
-  "name": "Pets house",
-  "description": "Pets house on Heroku",
+  "name": "Events app",
+  "description": "Events app",
   "image": "heroku/python",
   "keywords": ["python", "flask" ]
 }

@@ -1,2 +1,2 @@
 release: alembic upgrade head
-web: gunicorn -w 4 -b 0.0.0.0:5000 api:app
+web: gunicorn -w 4 -b localhost:5000 api:app --preload
